@@ -67,3 +67,82 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 })
 export class PizzaPartyAppModule {}
 ```
+
+## Step-2
+
+```bash
+ng g service my-data
+```
+
+and return sync demo data
+
+**my-data.service.ts**
+
+```typescript
+  getData(): ngSevillaWebData {
+    return {
+      groupInfo: {
+        name: 'ngSevilla',
+        description: `
+          Trabajas con Angular o ...
+        `,
+        imgSrc: 'ngSevilla.jpg'
+      },
+      meetups: [
+        {
+          title: 'Server-side rendering con Angular',
+          date: new Date(2019, 1, 21, 19, 0),
+          description: `
+            Angular SSR, Performance + SEO Diferencias entre renderizado en cliente y SSR
+          `,
+          imgSrc: ''
+        },
+        {
+          title: 'Formularios reactivos con Angular 7',
+          date: new Date(2019, 0, 23, 19, 0),
+          description: `
+            Hoy en día no podemos negar que el ...
+          `,
+          imgSrc: ''
+        },
+        ...
+      ]
+    };
+  }
+
+```
+
+Create some interfaces for our data
+
+**models/ngSevillaWebData.ts**
+
+```typescript
+import { GroupInfo } from './groupInfo';
+import { Meetup } from './meetup';
+
+export interface ngSevillaWebData {
+  groupInfo: GroupInfo;
+  meetups: Meetup[];
+}
+```
+
+**models/groupInfo.ts**
+
+```typescript
+export interface GroupInfo {
+  name: string;
+  description: string;
+  imgSrc: string;
+}
+```
+
+**models/meetup.ts**
+
+```typescript
+export interface Meetup {
+  title: string;
+  date: Date;
+  description: string;
+  imgSrc: string;
+}
+```

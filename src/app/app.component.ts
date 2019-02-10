@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MyDataService } from './my-data.service';
+import { ngSevillaWebData } from './models/ngSevillaWebData';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ngSevilla';
+  data: ngSevillaWebData;
+
+  constructor(private myDataService: MyDataService) {
+    this.data = this.myDataService.getData();
+  }
 }
