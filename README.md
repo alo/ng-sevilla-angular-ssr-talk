@@ -72,5 +72,112 @@ export class PizzaPartyAppModule {}
 
 We've added our components and some styles. If you are interested you can go a liitle deeper in this [repo](https://github.com/AlmeriaJS/angular6-web-ssr)
 
-
 ![web preview](https://user-images.githubusercontent.com/234613/52913499-1f7def00-32bf-11e9-92fe-39e424fa62b2.png)
+
+## Step-3
+
+Adding SSR using Universal!
+
+```bash
+ng generate universal --clientProject ngSevilla
+# output
+CREATE src/main.server.ts (220 bytes)
+CREATE src/app/app.server.module.ts (318 bytes)
+CREATE src/tsconfig.server.json (219 bytes)
+UPDATE package.json (1519 bytes)
+UPDATE angular.json (4807 bytes)
+UPDATE src/main.ts (451 bytes)
+UPDATE src/app/app.module.ts (1421 bytes)
+```
+
+Lets see whats just happend...
+
+**angular.josn**
+Here we have the config to compile the Universal bundle, this new object uses a different main.ts file and ts config
+
+```json
+...
+"server": {
+  "builder": "@angular-devkit/build-angular:server",
+  "options": {
+    "outputPath": "dist/ngSevilla-server",
+    "main": "src/main.server.ts",
+    "tsConfig": "src/tsconfig.server.json"
+  },
+  "configurations": {
+    "production": {
+      "fileReplacements": [
+        {
+          "replace": "src/environments/environment.ts",
+          "with": "src/environments/environment.prod.ts"
+        }
+      ],
+      "sourceMap": false,
+      "optimization": {
+        "scripts": false,
+        "styles": true
+      }
+    }
+  }
+}
+...
+```
+
+**tsconfig.server.json**
+We set the output to commonjs so nodeJS can understand it
+In angularCompilerOptions we have a new module **AppServerModule**
+
+```json
+{
+  "extends": "./tsconfig.app.json",
+  "compilerOptions": {
+    "outDir": "../out-tsc/app-server",
+    "baseUrl": ".",
+    "module": "commonjs"
+  },
+  "angularCompilerOptions": {
+    "entryModule": "app/app.server.module#AppServerModule"
+  }
+}
+```
+
+**main.server.ts**
+This module is used to bootstrap our app on the server
+
+```typescript
+import { enableProdMode } from '@angular/core';
+
+import 'zone.js/dist/zone-node';
+import 'reflect-metadata';
+
+import { environment } from './environments/environment';
+
+if (environment.production) {
+  enableProdMode();
+}
+
+export { AppServerModule } from './app/app.server.module';
+```
+
+**AppServerModule**
+Imports AppModule and ServerModule and bootstrap AppComponent.
+We added **FlexLayoutServerModule** from ```import { FlexLayoutServerModule } from '@angular/flex-layout/server';``` [explanation](https://github.com/angular/flex-layout/blob/master/guides/SSR.md)
+
+```typescript
+import { NgModule } from '@angular/core';
+import { ServerModule } from '@angular/platform-server';
+
+import { AppModule } from './app.module';
+import { AppComponent } from './app.component';
+import { FlexLayoutServerModule } from '@angular/flex-layout/server';
+
+@NgModule({
+  imports: [AppModule, ServerModule, FlexLayoutServerModule],
+  bootstrap: [AppComponent]
+})
+export class AppServerModule {}
+```
+*Note: if we want to use lazy loading we should import **ModuleMapLoaderModule** from ```@nguniversal/module-map-ngfactory-loader```
+
+
+
