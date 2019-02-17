@@ -1,0 +1,31 @@
+<mat-card class="card-margin">
+  <mat-card-content>
+    <div fxLayout="row wrap">
+      <div
+        fxFlex="O O 25%"
+        fxFlex.sm="0 0 30%"
+        fxFlex.xs="0 0 100%"
+        class="avatar"
+      >
+        <img [src]="profilePic.src" [alt]="profilePic.alt" />
+      </div>
+      <div
+        fxFlex="O O 70%"
+        fxFlexOffset="5%"
+        fxFlex.sm="0 0 65%"
+        fxFlexOffset.sm="5%"
+        fxFlex.xs="0 0 100%"
+        fxFlexOffset.xs="0"
+      >
+        <h1>Hola! Somos {{ name }}!</h1>
+        <h2 style="font-size: 18px; text-align: left; color: #444444">
+          {{ position }}
+        </h2>
+        <div [innerHTML]="mainDescription"></div>
+      </div>
+    </div>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <alo-social-links [socialLinks]="socialLinks"></alo-social-links>
+  </mat-card-actions>
+</mat-card>

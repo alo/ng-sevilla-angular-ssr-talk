@@ -1,0 +1,35 @@
+<h2>Meetups</h2>
+
+<div class="projects-list">
+  <div flex fxLayout="row wrap" style="max-width: 100%;">
+    <div
+      *ngFor="let project of projects"
+      fxFlex="O O 33.3333%"
+      fxFlex.sm="0 0 50%"
+      fxFlex.xs="0 0 100%"
+    >
+      <mat-card class="card-margin">
+        <mat-card-header>
+          <mat-card-title>{{ project.title }}</mat-card-title>
+          <mat-card-subtitle>{{ project.subtitle }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <div style="width: 100%; height: 200px; text-align: center;">
+            <img
+              matCardImage
+              style="width: 200px; margin: 0px"
+              [src]="project.imgSrc"
+              [alt]="project.imgAlt"
+            />
+          </div>
+          {{ project.desc }}
+        </mat-card-content>
+        <mat-card-actions align="end">
+          <alo-social-links
+            [socialLinks]="project.socialLinks"
+          ></alo-social-links>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { MyDataService } from './my-data.service';
-import { ngSevillaWebData } from './models/ngSevillaWebData';
+import { MainDescription } from './models/main-description.interface';
+import { AppService } from './app.service';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -8,10 +9,17 @@ import { ngSevillaWebData } from './models/ngSevillaWebData';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'ngSevilla';
-  data: ngSevillaWebData;
+  data: MainDescription;
 
-  constructor(private myDataService: MyDataService) {
-    this.data = this.myDataService.getData();
+  constructor(
+    private appService: AppService,
+    private meta: Meta,
+    private title: Title
+  ) {}
+
+  ngOnInit() {
+    this.data = this.appService.getData();
+    this.title.setTitle(this.data.title);
+    this.meta.addTags(this.data.metas);
   }
 }
