@@ -70,6 +70,7 @@ export class PizzaPartyAppModule {}
 
 ## Step-2
 
-We've added our components and some styles. If you are interested you can go a liitle deeper in this (repo)[https://github.com/AlmeriaJS/angular6-web-ssr]
+We've added our components and some styles. If you are interested you can go a liitle deeper in this [repo](https://github.com/AlmeriaJS/angular6-web-ssr)
+
 
 
