@@ -180,4 +180,55 @@ export class AppServerModule {}
 *Note: if we want to use lazy loading we should import **ModuleMapLoaderModule** from ```@nguniversal/module-map-ngfactory-loader```
 
 
+## Step-4
+
+Create a simple express server
+
+```bash
+npm i --save @nguniversal/express-engine
+```
+
+```typescript
+import * as express from 'express';
+import { join } from 'path';
+
+import { ngExpressEngine } from '@nguniversal/express-engine';
+// import { provideModuleMap } from '@nguniversal/module-map-ngfactory-loader';
+
+const PORT = process.env.PORT || 8080;
+const staticRoot = join(process.cwd(), 'dist', 'ngSevilla');
+const { AppServerModuleNgFactory } = require('./ngSevilla-server/main');
+
+const app = express();
+
+// html engine
+app.engine('html', ngExpressEngine({
+  bootstrap: AppServerModuleNgFactory,
+  // providers: [
+  //   provideModuleMap(LAZY_MODULE_MAP)
+  // ]
+}));
+
+app.set('view engine', 'html');
+app.set('views', staticRoot);
+
+app.get('*.*', express.static(staticRoot));
+app.get('*', (req, res) => res.render('index', { req }));
+
+app.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`));
+```
+
+Add some scripts to **package.josn**
+
+```json
+...
+"scripts": {
+  ...
+  "start:server": "node ./dist/server.js",
+  "build:server": "ng build --prod && ng run ngSevilla:server:production",
+  "tsc:server": "tsc -p server/tsconfig.server.json",
+  ...
+},
+...
+```
 
