@@ -1,0 +1,82 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #fafafa;
+  margin: 12px;
+}
+.container {
+  max-width: 997px;
+  margin: 30px auto;
+}
+h1 {
+  margin-top: 0;
+  font-size: 26px;
+}
+@media screen and (max-width: 599px) {
+  h1 {
+    text-align: center;
+  }
+}
+
+h2 {
+  text-align: center;
+}
+
+.card-margin {
+  margin: 12px;
+}
+.avatar {
+  text-align: center;
+  img {
+    max-width: 200px;
+    margin-bottom: 24px;
+  }
+}
+img {
+  width: 100%;
+}
+.mat-card-content,
+.mat-card-header,
+.mat-card-title,
+.mat-card-subtitle {
+  font-size: 16px;
+}
+
+.mat-card-content,
+.mat-card-header .mat-card-title {
+  font-size: 18px;
+}
+
+.social-links {
+  a {
+    font-size: 25px;
+    line-height: 35px;
+    text-decoration: none;
+  }
+}
+.fa-svg {
+  display: inline-block;
+  width: 1.15rem;
+  height: 1.15rem;
+  background-color: #3f51b5;
+  mask-repeat: no-repeat;
+  mask-size: contain;
+  mask-position: center center;
+  &.fa-twitter {
+    mask-image: url('/assets/svg/twitter.svg');
+  }
+  &.fa-earth {
+    mask-image: url('/assets/svg/earth.svg');
+  }
+  &.fa-linkedin {
+    mask-image: url('/assets/svg/linkedin.svg');
+  }
+  &.fa-github {
+    mask-image: url('/assets/svg/github.svg');
+  }
+  &.fa-instagram {
+    mask-image: url('/assets/svg/instagram.svg');
+  }
+  &.fa-meetup {
+    mask-image: url('/assets/svg/meetup.svg');
+  }
+}

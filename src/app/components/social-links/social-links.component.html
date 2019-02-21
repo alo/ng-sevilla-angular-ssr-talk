@@ -1,0 +1,12 @@
+<span class="social-links" *ngFor="let socialLink of socialLinks">
+  <a
+    mat-icon-button
+    [href]="socialLink.link"
+    target="_blank"
+    color="primary"
+    rel="noopener"
+    aria-label="enlace social"
+  >
+    <i [class]="socialLink.icon"></i>
+  </a>
+</span>
