@@ -253,3 +253,7 @@ Add some scripts to **package.josn**
 ...
 ```
 
+## sync-routing
+
+Test SSR with routing... 
+
