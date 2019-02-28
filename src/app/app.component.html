@@ -1,12 +1,5 @@
-<div class="container">
-  <alo-description
-    [name]="data.name"
-    [mainDescription]="data.description"
-    [profilePic]="data.profilePic"
-    [position]="data.position"
-    [socialLinks]="data.socialLinks"
-  >
-  </alo-description>
+<a [routerLink]="[ '/' ]">Home</a> <br>
+<a [routerLink]="[ '/projects']">Projects</a>
+<router-outlet></router-outlet>
 
-  <alo-projects [projects]="data.projects"></alo-projects>
-</div>
+
