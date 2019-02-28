@@ -45,6 +45,27 @@ webpack                           4.29.0
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
+## Server side render server
+
+* Build the bundles 
+```bash
+npm run build:server
+```
+
+* Build the server
+```bash
+npm run tsc:server
+```
+
+* dev server 
+```bash
+npm run start:server
+```
+
+* Navigate to `http://localhost:8080/` 
+
+
+
 ## Step-1
 
 At this point we have only generated our app with @angular/cli and added @angular/material and @angular/flex-layout
